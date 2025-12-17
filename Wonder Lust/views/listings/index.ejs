@@ -1,24 +1,36 @@
-<% layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %> 
 
-    <h3>All Listings</h3>
-    <!-- <form method="get"  action="/listings/new">
-        <button> create new listing</button>
-    </form> -->
-    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 g-3">
-  <% for (let listing of allListings) { %>
-    <div class="col">
-      <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-        <div class="card h-100">
-          <img src="<%= listing.image.url %>" class="card-img-top" style="height:20rem; object-fit:cover;" />
-          <div class="card-img-overlay"></div>
-          <div class="card-body">
-            <h5 class="card-title"><%= listing.title %></h5>
-            <p class="card-text"><%= listing.price.toLocaleString("en-IN") %> / night</p>
-          </div>
-        </div>
-      </a>
+<h3>All Listings</h3>
+
+<div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 g-3">
+  <% if (!allListings || allListings.length === 0) { %>
+    <div class="col-12">
+      <p>No listings found.</p>
     </div>
+  <% } else { %>
+    <% for (let listing of allListings) { %>
+      <div class="col">
+        <a href="/listings/<%= listing?._id %>" class="text-decoration-none text-dark">
+          <div class="card col listing-card">
+            <% 
+              // safe image url (fallback if missing)
+              const imageUrl = listing && listing.image && listing.image.url
+                ? listing.image.url
+                : '/images/placeholder.jpg'; // make sure this file exists in /public/images
+              // safe price display
+              const priceDisplay = listing && listing.price != null
+                ? new Intl.NumberFormat('en-IN').format(Number(listing.price))
+                : 'N/A';
+            %>
+            <img src="<%= imageUrl %>" class="card-img-top" style="height:20rem; object-fit:cover;" alt="<%= listing && listing.title ? listing.title : 'Listing' %>"/>
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <h5 class="card-title"><%= listing && listing.title ? listing.title : 'Untitled' %></h5>
+              <p class="card-text"><%= priceDisplay %> / night</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
   <% } %>
 </div>
-
-
