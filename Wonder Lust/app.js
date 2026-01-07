@@ -46,7 +46,7 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const store = MongoStore.create({
+const store = MongoStore({
     mongoUrl: dbUrl,
     crypto: {
         secret: process.env.SECRET,
@@ -54,9 +54,11 @@ const store = MongoStore.create({
     touchAfter: 24 * 60 * 60,
 });
 
+
 store.on("error", (err) => {
     console.log("SESSION STORE ERROR:", err);
 });
+
 
 const sessionOptions = {
     store,
