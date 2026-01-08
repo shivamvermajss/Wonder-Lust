@@ -3,82 +3,81 @@
 <div class="listings-wrapper">
 
   <div id="filters">
-    <div class="filter">
+
+    <a href="/listings?category=trending" class="filter">
       <div><i class="fa-solid fa-fire"></i></div>
       <p>Trending</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=rooms" class="filter">
       <div><i class="fa-solid fa-bed"></i></div>
       <p>Rooms</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=iconic" class="filter">
       <div><i class="fa-solid fa-mountain-city"></i></div>
       <p>Iconic city</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=mountains" class="filter">
       <div><i class="fa-solid fa-mountain"></i></div>
       <p>Moutains</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=castles" class="filter">
       <div><i class="fa-brands fa-fort-awesome"></i></div>
       <p>Castles</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=pools" class="filter">
       <div><i class="fa-solid fa-person-swimming"></i></div>
       <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
+    </a>
+
+    <a href="/listings?category=flats" class="filter">
       <div><i class="fa-solid fa-house-chimney-user"></i></div>
       <p>flats</p>
-    </div>
-    <div class="filter">
-      <div><i class="fa-solid fa-house-chimney-user"></i></div>
-      <p>flats</p>
-    </div>
-    <div class="filter">
+    </a>
+
+    <a href="/listings?category=homes" class="filter">
       <div><i class="fa-solid fa-house-chimney-user"></i></div>
       <p>homes</p>
-    </div>
-    <div class="filter">
+    </a>
+
+    <a href="/listings?category=villa" class="filter">
       <div><i class="fa-solid fa-building"></i></div>
       <p>Villa</p>
-    </div>
-    
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=camps" class="filter">
       <div><i class="fa-solid fa-tent"></i></div>
       <p>Camps</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=farms" class="filter">
       <div><i class="fa-solid fa-tractor"></i></div>
       <p>Farms</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=igloo" class="filter">
       <div><i class="fa-solid fa-igloo"></i></div>
       <p>Igloo</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=beach" class="filter">
       <div><i class="fa-solid fa-umbrella-beach"></i></div>
       <p>Beach</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=apartment" class="filter">
       <div><i class="fa-solid fa-building"></i></div>
       <p>Apartment</p>
-    </div>
+    </a>
 
-    <div class="filter">
+    <a href="/listings?category=arctic" class="filter">
       <div><i class="fa-solid fa-snowflake"></i></div>
       <p>Artic</p>
-    </div>
+    </a>
 
     <div class="tax-toggle">
       <div class="form-check-revers form-switch">
@@ -88,6 +87,7 @@
         </label>
       </div>
     </div>
+
   </div>
 
   <div class="row g-4 mt-3">
@@ -111,7 +111,6 @@
                   <%= new Intl.NumberFormat('en-IN').format(listing.price) %> / night
                   <span class="tax-info"> +18% GST</span>
                 </p>
-
               </div>
             </div>
           </a>
