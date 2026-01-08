@@ -5,34 +5,32 @@ body{
     min-height: 100vh;
     background-color: #fafafa;
 }
+
 .container {
     flex: 1;
-    max-width: 1600px;   /* wider layout like your friend */
+    max-width: 1600px;
     padding-left: 24px;
     padding-right: 24px;
 }
 
-
 .navbar{
     height: 5rem;
     background-color: white;
+}
 
-} 
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
 }
+
 .nav-link{
     color: #222222 !important;
 }
-.f-info-links a {
-    text-decoration: none;
-    color: #222222;
+
+.nav-link:hover {
+    color: #ff385c !important;
 }
-.f-info-links a:hover {
-    text-decoration: underline;
-    
-}
+
 .f-info{
     display: flex;
     text-align: center;
@@ -40,24 +38,35 @@ body{
     background-color: #ebebeb;
     flex-wrap: wrap;
     justify-content: center;
-    align-items:space-evenly;
 }
 
-.f-info-socials i {
-
-     margin-right: 2rem;
-     font-size: 1.2rem;
-    
-}
-.f-info-links,.f-info-socials,.f-inf0-brand{
+.f-info-links,
+.f-info-socials,
+.f-inf0-brand{
     width: 100%;
-    vertical-align: middle;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials i {
+    margin-right: 2rem;
+    font-size: 1.2rem;
+}
+
+/* ================= LISTING CARDS ================= */
+
 .listing-card {
-    border: none;
+    border: none !important;
     border-radius: 18px;
     overflow: hidden;
     background: white;
@@ -75,167 +84,88 @@ body{
     object-fit: cover;
 }
 
-
-.listing-card{
-    border:none !important;
-    margin-bottom: 0rem;
-    margin-top: 0rem;
-
-}
-.card-img-top{
-    border-radius: 1rem !important;
-    width: 100%  !important;
-    object-fit: cover !important;
-
-}
 .card-body{
     padding: 0 !important;
-
-}
-.card-text p {
-    font-weight: 400 !important;
-}
-.listing-link{
-    text-decoration: none;
 }
 
-.card-img-overlay{
-    opacity: 0;
-}
-.card-img-overlay:hover{
-    opacity: 0.2;
-    background-color: white;
-}
-.add-btn{
-    background-color: #fe424d !important;
-    border: none !important;
-}
-/* EDit page*/
-.edit-btn{
-    background-color: #fe424d !important;
-    border: none !important;
-
-}
-/* show page*/
-.show-img{
-    height: 30vh;
-
-}
-.btns{
-    display: flex;
-}
-.show-card{
-    padding-left: 0;
-    padding-right: 0;
-}
-
-/* Mapbox*/
-#map {
-    width: 80vh;
-    height: 400px;
-}
-#filters{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.filter{
-    text-align: center;
-    margin-right: 2rem;
-    margin-top: 2rem;
-    opacity: 0.7;
-    ;
-}
-.filter:hover{
-    opacity: 1;
-    cursor: pointer;
-}
-.filter p {
-    font-size: 0.8rem;
-}
-.tax-info {
-    font-size: 0.85rem;
-    color: #666;
-    font-weight: 500;
-    display: none;
-}
-.tax-label {
-    white-space: nowrap;
-    margin-left: 8px;
-    font-weight: 500;
-}
-
-
-.tax-toggle{
-    border: 1px solid black;
-    border-radius: 1rem;
-    padding: 1rem;
-    height: 3.25rem;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-} 
 .card-title {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 2px;
 }
 
+.tax-info {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    display: none;
+}
+
+/* ================= FILTER BAR (FIXED) ================= */
 
 #filters {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  overflow-x: auto;
-  padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+
+#filters::-webkit-scrollbar {
+    display: none;
 }
 
 .filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  color: #222;
-  text-decoration: none;
-  transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #222;
+    opacity: 0.75;
+    transition: all 0.2s ease;
 }
 
 .filter i {
-  font-size: 1.3rem;
-  margin-bottom: 4px;
-  color: #222;
-  transition: transform 0.25s ease, color 0.25s ease;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    color: #222;
 }
 
 .filter p {
-  font-size: 0.85rem;
-  margin: 0;
-  color: #222;
-  font-weight: 500;
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 500;
 }
 
 .filter:hover {
-  color: #000;
+    opacity: 1;
 }
 
-.filter:hover i {
-  color: #000;
-  transform: scale(1.15);
-}
-
+.filter:hover i,
 .filter:hover p {
-  color: #000;
+    color: #000;
 }
 
-.filter a {
-  text-decoration: none;
-  color: inherit;
+/* ================= DISPLAY TOTAL (SAME LINE) ================= */
+
+.tax-toggle{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    padding: 6px 12px;
 }
 
-.price {
-    font-size: 0.95rem;
-    color: #555;
+.tax-label {
+    white-space: nowrap;
+    margin-left: 8px;
+    font-weight: 500;
 }
+
+/* ================= SEARCH BAR ================= */
 
 .search-bar {
     max-width: 520px;
@@ -261,63 +191,23 @@ body{
     right: 4px;
     top: 50%;
     transform: translateY(-50%);
-
     width: 36px;
     height: 36px;
     border-radius: 50%;
-
     background-color: #ff385c;
     color: #fff;
     border: none;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.search-btn i {
-    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .search-btn:hover {
     background-color: #e0314d;
 }
 
-.brand-logo {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #ff385c;
-    letter-spacing: 0.5px;
-    display: inline;
-}
-.listings-wrapper {
-    max-width: 1700px;
-    margin: 0 auto;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.add-link {
-    font-weight: 500;
-}
-
-.auth-link {
-    font-weight: 600;
-}
-
-.nav-link:hover {
-    color: #ff385c !important;
-}
-
-
+/* ================= NAV BUTTONS ================= */
 
 .navbar .nav-btn {
     min-width: 140px;
@@ -332,23 +222,24 @@ body{
     transition: all 0.25s ease;
 }
 
-
 .navbar .nav-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-@media (max-width: 768px) {
-    .navbar .nav-btn {
-        width: 100%;
-    }
+/* ================= MISC ================= */
+
+.listings-wrapper {
+    max-width: 1700px;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 a {
-  color: inherit;
+    color: inherit;
 }
 
 a:hover {
-  color: inherit;
+    color: inherit;
 }
-  
