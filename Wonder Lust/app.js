@@ -5,14 +5,10 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema, reviewSchema } = require("./schema.js");
-const Review = require("./models/review.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
@@ -28,12 +24,8 @@ const bookingRoutes = require("./routes/booking");
 const dbUrl = process.env.ATLASDB_URL;
 
 main()
-    .then(() => {
-        console.log("connected to db");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+    .then(() => console.log("connected to db"))
+    .catch(err => console.log(err));
 
 async function main() {
     await mongoose.connect(dbUrl);
@@ -52,11 +44,9 @@ const store = MongoStore.create({
     touchAfter: 24 * 60 * 60,
 });
 
-store.on("error", (err) => {
+store.on("error", err => {
     console.log("SESSION STORE ERROR:", err);
 });
-
-
 
 const sessionOptions = {
     store,
@@ -87,6 +77,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 app.use("/", bookingRoutes);
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
@@ -102,7 +96,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 8080;
-
 app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 });
