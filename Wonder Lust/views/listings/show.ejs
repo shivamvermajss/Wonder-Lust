@@ -3,7 +3,9 @@
 <script>
     const mapToken = "<%= mapToken %>";
     const coordinates = <%- JSON.stringify(
-        listing.geometry?.coordinates || []
+        listing.geometry && listing.geometry.coordinates
+            ? listing.geometry.coordinates
+            : [78.9629, 20.5937]   // fallback (India)
     ) %>;
 </script>
 
@@ -14,8 +16,8 @@
     </div>
 
     <div class="card col-6 offset-3 show-card listing-card">
-        <img src="<%= listing.image.url%>" class="card-img-top show-img" alt="listing_image">
-        
+        <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
+
         <div class="card-body">
             <p class="card-text"><i>owned by <%= listing.owner.username %></i></p>
             <p class="card-text"><%= listing.description %></p>
@@ -26,7 +28,7 @@
                 <%= listing.price != null ? Number(listing.price).toLocaleString("en-IN") : "N/A" %>
             </p>
 
-            <p class="card-text"><%= listing.location %></p> 
+            <p class="card-text"><%= listing.location %></p>
             <p class="card-text"><%= listing.country %></p>
         </div>
     </div>
@@ -36,69 +38,41 @@
 
 <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
 <div class="btns col-6 offset-3 mt-3">
-    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">
-        Edit
-    </a>
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit</a>
 
     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-        <button class="btn btn-dark" type="submit">
-            Delete
-        </button>
+        <button class="btn btn-dark" type="submit">Delete</button>
     </form>
-</div>
-<% } %>
-
-<% if (currUser && !currUser._id.equals(listing.owner._id)) { %>
-<div class="row mt-4">
-    <div class="col-6 offset-3">
-        <div class="card p-3">
-            <h5 class="mb-3">Book this place</h5>
-
-            <form action="/listings/<%= listing._id %>/book" method="POST">
-                <div class="mb-2">
-                    <label class="form-label">Check In</label>
-                    <input type="date" name="checkIn" class="form-control" required>
-                </div>
-
-                <div class="mb-2">
-                    <label class="form-label">Check Out</label>
-                    <input type="date" name="checkOut" class="form-control" required>
-                </div>
-
-                <button class="btn btn-success w-100 mt-2">
-                    Reserve
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-<% } %>
-
-<% if (!currUser) { %>
-<div class="row mt-4">
-    <div class="col-6 offset-3 text-center">
-        <a href="/login" class="btn btn-outline-primary">
-            Login to Book
-        </a>
-    </div>
 </div>
 <% } %>
 
 <div class="col-8 offset-3 mb-3">
 
     <% if(currUser) { %>
-    <hr>    
+    <hr>
     <h4>Leave a Review</h4>
 
     <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+
         <div class="mb-3 mt-3">
             <label class="form-label">Rating</label>
+
+            <!-- ✅ FIXED STAR RATING -->
             <fieldset class="starability-slot">
-                <input type="radio" name="review[rating]" value="1" />
-                <input type="radio" name="review[rating]" value="2" />
-                <input type="radio" name="review[rating]" value="3" />
-                <input type="radio" name="review[rating]" value="4" />
-                <input type="radio" name="review[rating]" value="5" />
+                <input type="radio" id="rate1" name="review[rating]" value="1" required />
+                <label for="rate1" title="Terrible">1 star</label>
+
+                <input type="radio" id="rate2" name="review[rating]" value="2" />
+                <label for="rate2" title="Not good">2 stars</label>
+
+                <input type="radio" id="rate3" name="review[rating]" value="3" />
+                <label for="rate3" title="Average">3 stars</label>
+
+                <input type="radio" id="rate4" name="review[rating]" value="4" />
+                <label for="rate4" title="Very good">4 stars</label>
+
+                <input type="radio" id="rate5" name="review[rating]" value="5" />
+                <label for="rate5" title="Amazing">5 stars</label>
             </fieldset>
         </div>
 
@@ -122,6 +96,7 @@
             <div class="card-body">
                 <h5 class="card-title"><%= review.author.username %></h5>
                 <p class="card-text"><%= review.comment %></p>
+
                 <p class="starability-result" data-rating="<%= review.rating %>">
                     Rated: <%= review.rating %>
                 </p>
